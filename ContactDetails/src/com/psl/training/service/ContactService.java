@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 import com.psl.training.model.*;
+import com.psl.training.util.DBConnection;
 
 public class ContactService{
 	
@@ -131,7 +132,18 @@ public class ContactService{
 		}
 		return contacts;
 	}
-
+	public Set<Contact> populateContactFromDb(){
+		Set<Contact> contactSet=DBConnection.getContactFromDB();
+		return contactSet;
+	}
+	public Boolean addContacts(Set<Contact> newContacts) {
+		for(Contact c:newContacts) {
+			this.contacts.add(c);
+		}
+		System.out.println(this.contacts.toString());
+		return true;
+		
+	}
 
 }
 
